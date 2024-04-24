@@ -1,42 +1,44 @@
 package com.example.cs481traveljournal
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.PackageManager
+import android.location.LocationRequest
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnMapReadyCallback {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // Retrieve the content view that renders the map.
+
 
         // Get the SupportMapFragment and request notification when the map is ready to be used.
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
-        mapFragment?.getMapAsync(this)
-
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.cMap) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
-    class MapsMarkerActivity : AppCompatActivity(), OnMapReadyCallback {
 
-        // ...
-
-        override fun onMapReady(googleMap: GoogleMap) {
-            val sydney = LatLng(33.1237, -117.1557)
-            googleMap.addMarker(
-                MarkerOptions()
-                    .position(sydney)
-                    .title("Marker in Sydney")
-            )
-        }
+    override fun onMapReady(googleMap: GoogleMap) {
+        // Set the map coordinates to Kyoto Japan.
+        val kyoto = LatLng(33.1237, -117.1557)
+        // Set the map type to Hybrid.
+        googleMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+        // Add a marker on the map coordinates.
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(kyoto)
+                .title("Kyoto")
+        )
+        // Move the camera to the map coordinates and zoom in closer.
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kyoto, 15f))
+        // Display traffic.
+        googleMap.isTrafficEnabled = true
     }
-}
-
-private fun <Fragment> Fragment?.getMapAsync(mainActivity: MainActivity) {
 
 }
-
-
-
