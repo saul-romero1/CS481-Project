@@ -1,10 +1,13 @@
 package com.example.cs481traveljournal
 
+import MapFragment
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
@@ -12,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         permissionRequest()
 
@@ -21,6 +25,19 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.cMap, MapFragment())
             .commit()
+        findViewById<BottomNavigationView>(R.id.nHome).setOnItemSelectedListener {item ->
+            when(item.itemId){
+                R.id.ic_new_journey ->{
+                    startActivity(Intent(this,plan_journey_activity::class.java))
+                    true
+                }
+                else ->
+                    true
+
+
+            }
+        }
+
 
     }
     private fun permissionRequest(){

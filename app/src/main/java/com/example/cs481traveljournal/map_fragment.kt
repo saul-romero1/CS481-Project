@@ -1,13 +1,13 @@
-package com.example.cs481traveljournal
-
 import android.annotation.SuppressLint
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.cs481traveljournal.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener
@@ -46,10 +46,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickListe
         mapFragment.getMapAsync(this)
     }
 
+
     @SuppressLint("MissingPermission")
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
-
         // Set the map coordinates to CSUSM, California.
         val csusm = LatLng(33.1237, -117.1557)
 
@@ -69,7 +69,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickListe
         // Display traffic.
         googleMap.isTrafficEnabled = true
 
-        googleMap.isMyLocationEnabled = true
+        googleMap.isMyLocationEnabled =true
 
         // Set click listeners
         googleMap.setOnMyLocationButtonClickListener(this)
@@ -83,7 +83,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickListe
         return false
     }
 
+
+
+
     override fun onMyLocationClick(location: Location) {
         Toast.makeText(requireContext(), "Current location:\n$location", Toast.LENGTH_LONG).show()
     }
+
 }
