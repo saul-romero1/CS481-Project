@@ -85,7 +85,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation ("com.google.android.gms:play-services-auth:21.1.0")
 
-
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
 }
 secrets {
     // Optionally specify a different file name containing your secrets.
