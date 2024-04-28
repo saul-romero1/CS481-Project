@@ -25,7 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions
  */
 class MapFragment : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickListener, OnMyLocationClickListener {
 
-    private lateinit var googleMap: GoogleMap
+    public lateinit var googleMap: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
