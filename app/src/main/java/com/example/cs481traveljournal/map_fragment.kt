@@ -25,7 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions
  */
 class MapFragment : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickListener, OnMyLocationClickListener {
 
-    public lateinit var googleMap: GoogleMap
+    private lateinit var googleMap: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +88,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickListe
 
     override fun onMyLocationClick(location: Location) {
         Toast.makeText(requireContext(), "Current location:\n$location", Toast.LENGTH_LONG).show()
+    }
+
+    fun zoomOnMap(latLng: LatLng){
+        val newLatLngZoom = CameraUpdateFactory.newLatLngZoom(latLng, 12f)
+        googleMap?.animateCamera(newLatLngZoom)
     }
 
 }
