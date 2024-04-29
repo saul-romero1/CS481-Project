@@ -19,14 +19,15 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 
 
 class MainActivity : AppCompatActivity() {
-    //private lateinit var autocompleteFragment: AutocompleteSupportFragment
+    private lateinit var autocompleteFragment: AutocompleteSupportFragment
+    private lateinit var mapFragment: MapFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
         permissionRequest()
-        /*
+
         Places.initialize(applicationContext,getString(R.string.google_api_key)) //2
         autocompleteFragment = supportFragmentManager.findFragmentById(R.id.autocomplete_fragment)
                 as AutocompleteSupportFragment
@@ -36,14 +37,17 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Error while searching", Toast.LENGTH_SHORT).show()
             }
 
+
             override fun onPlaceSelected(place: Place) {
-                //val add = place.address
-                //val id = place.id
-                val latLng = place.latLng
+                place.latLng?.let { latLng ->
+                    supportFragmentManager.findFragmentById(R.id.cMap)?.let { fragment ->
+                        (fragment as? MapFragment)?.zoomOnMap(latLng)
+                    }
+                } ?: Toast.makeText(this@MainActivity, "Location not found.", Toast.LENGTH_SHORT).show()
             }
 
+
         })
-         */
 
         // Get the SupportMapFragment and request notification when the map is ready to be used.
         supportFragmentManager.beginTransaction()
@@ -61,13 +65,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-    /*
-    private fun zoomOnMap(latLng: LatLng){
-        val newLatLngZoom = CameraUpdateFactory.newLatLngZoom(latLng, 12f)
-        googleMap?.animateCamera(newLatLngZoom)
-    }
-     */
 
     private fun permissionRequest(){
         var permissionList = mutableListOf<String>()
