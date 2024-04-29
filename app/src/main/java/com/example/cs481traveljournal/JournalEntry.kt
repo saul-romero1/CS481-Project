@@ -19,7 +19,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class JournalEntry : AppCompatActivity() {
 
     private lateinit var travelPic: ImageView
     private lateinit var imageUri: Uri
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_journal_entry)
         travelPic = findViewById(R.id.travelPic)
 
         storage = FirebaseStorage.getInstance()
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun uploadPicture() {
-        val pd = ProgressDialog(this@MainActivity)
+        val pd = ProgressDialog(this@JournalEntry)
         pd.setTitle("Uploading Image...")
         pd.show()
 
@@ -71,13 +71,20 @@ class MainActivity : AppCompatActivity() {
         riversRef.putFile(imageUri, metadata)
             .addOnSuccessListener { taskSnapshot ->
                 pd.dismiss()
-                Snackbar.make(findViewById(android.R.id.content), "Image uploaded", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    findViewById(android.R.id.content),
+                    "Image uploaded",
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
             .addOnFailureListener { exception ->
                 pd.dismiss()
                 Toast.makeText(applicationContext, "Failed to upload", Toast.LENGTH_LONG).show()
             }
             .addOnProgressListener { taskSnapshot ->
-                val progressPercent = 100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount
+                val progressPercent =
+                    100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount
                 pd.setMessage("Progress: ${progressPercent.toInt()}%")
             }
+    }
+}
