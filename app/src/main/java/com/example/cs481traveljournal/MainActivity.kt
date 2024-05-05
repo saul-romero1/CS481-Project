@@ -53,10 +53,15 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.cMap, MapFragment())
             .commit()
+
         findViewById<BottomNavigationView>(R.id.nHome).setOnItemSelectedListener {item ->
             when(item.itemId){
                 R.id.ic_new_journey ->{
                     startActivity(Intent(this,plan_journey_activity::class.java))
+                    true
+                }
+                R.id.ic_current_journal-> {
+                    startActivity(Intent(this, JournalEntry::class.java))
                     true
                 }
                 else ->

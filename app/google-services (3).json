@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "808741829815",
+    "project_id": "cs481traveljournal",
+    "storage_bucket": "cs481traveljournal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808741829815:android:b8945fc5446e8200896132",
+        "android_client_info": {
+          "package_name": "com.example.cs481traveljournal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk8KXJ5L3ieAGHHlyoJfOnpUlUdAx8ebg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

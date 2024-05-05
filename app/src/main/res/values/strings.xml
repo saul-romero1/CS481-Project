@@ -6,6 +6,13 @@
     <string name="title_activity_log_in">LogIn</string>
     <string name="mm_dd_yyyy_mm_dd_yyyy"> From: mm/dd/yyyy \nTo: mm/dd/yyyy</string>
     <string name="sign_in">Sign In</string>
-    <string name="google_api_key">AIzaSyCDitCBr0qcDUz9Z-J3YGpx34NPf0HWfYk</string>
+    <string name="google_api_key">AIzaSyAk8KXJ5L3ieAGHHlyoJfOnpUlUdAx8ebg</string>
+    <string name="back">back</string>
+    <string name="usd_to_currency">USD to Currency</string>
+    <string name="country">country</string>
+    <string name="language_spoken">Language Spoken</string>
+    <string name="Penguinese">Penguin</string>
+    <string name="Antartic_Money">1 dollar = 1 frozen dollar</string>
+
 
 </resources>

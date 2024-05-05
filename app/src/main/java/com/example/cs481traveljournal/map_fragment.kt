@@ -8,6 +8,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.cs481traveljournal.R
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.Places
 
 
 /**
@@ -76,13 +78,22 @@ class MapFragment : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickListe
         googleMap.setOnMyLocationClickListener(this)
     }
 
-    override fun onMyLocationButtonClick(): Boolean {
-        Toast.makeText(requireContext(), "MyLocation button clicked", Toast.LENGTH_SHORT).show()
-        // Return false so that we don't consume the event and the default behavior still occurs
-        // (the camera animates to the user's current position).
-        return false
-    }
 
+    @SuppressLint("MissingPermission")
+    override fun onMyLocationButtonClick(): Boolean {
+        // Get the last known location
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location : Location? ->
+                location?.let {
+                    zoomOnMap(LatLng(location.latitude, location.longitude))
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(requireContext(), "Failed to get current location: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        return true
+    }
 
 
 
