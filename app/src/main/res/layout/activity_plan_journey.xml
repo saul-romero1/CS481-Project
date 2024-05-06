@@ -111,6 +111,8 @@
         android:id="@+id/bBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/white"
         android:text="@string/back"
         app:layout_constraintTop_toBottomOf="@id/tv_Currency"
         app:layout_constraintStart_toStartOf="parent"

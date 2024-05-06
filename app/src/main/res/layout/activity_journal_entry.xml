@@ -84,4 +84,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/text" />
+
+    <Button
+        android:id="@+id/bBack"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tv_Date"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="68dp"
+        android:gravity="center"
+        android:hint="Date"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/travelPic"
+        app:layout_constraintTop_toBottomOf="@+id/location" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,19 +4,22 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
+import android.os.Handler
+import android.os.Looper
+import android.text.Editable
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.NonNull
-import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.libraries.places.api.model.LocalDate
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageMetadata
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class JournalEntry : AppCompatActivity() {
@@ -25,11 +28,25 @@ class JournalEntry : AppCompatActivity() {
     private lateinit var imageUri: Uri
     private lateinit var storageReference: StorageReference
     private lateinit var storage: FirebaseStorage
+    val dateFormatter = DateTimeFormatter.ofPattern("MMM/dd/yyyy")
+    val timeFormatter = DateTimeFormatter.ofPattern("hh:mm a")
+    var currentDate = LocalDateTime.now()
+    private val handler = Looper.myLooper()?.let { Handler(it) }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_journal_entry)
+        findViewById<Button>(R.id.bBack).setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+        }
         travelPic = findViewById(R.id.travelPic)
+
+        updateDateTime()
+        handler?.postDelayed(updateRunnable, 500)
+
+        findViewById<TextView>(R.id.tv_Date).text = "${currentDate.format(dateFormatter)}\n" +
+                "${currentDate.format(timeFormatter)}"
 
         storage = FirebaseStorage.getInstance()
         storageReference = storage.reference
@@ -87,4 +104,24 @@ class JournalEntry : AppCompatActivity() {
                 pd.setMessage("Progress: ${progressPercent.toInt()}%")
             }
     }
+    private val updateRunnable = object : Runnable {
+        override fun run() {
+            updateDateTime()
+            handler?.postDelayed(this, 500)
+        }
+    }
+
+    private fun updateDateTime() {
+        var currentDateTime = LocalDateTime.now()
+
+        findViewById<TextView>(R.id.tv_Date).text = "${currentDateTime.format(dateFormatter)}\n" +
+                "${currentDateTime.format(timeFormatter)}"
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Remove pending updates to avoid memory leaks
+        handler?.removeCallbacks(updateRunnable)
+    }
+
 }
