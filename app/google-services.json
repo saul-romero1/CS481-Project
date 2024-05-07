@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "596374289532",
+    "project_id": "cs481traveljournal-b69f1",
+    "storage_bucket": "cs481traveljournal-b69f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596374289532:android:791b90c4a0f2348b345df9",
+        "android_client_info": {
+          "package_name": "com.example.cs481traveljournal"
+        }
+      },
+      "oauth_client": [{
+        "client_id": "284804633103-1u1ds0u3km5n3igaqhsh4oh0gjm0srim.apps.googleusercontent.com",
+        "client_type": 3
+      },
+        {
+          "client_id": "284804633103-4t63b9jtehc3crl9ufsjm9iela2grv6a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cs481traveljournal",
+            "certificate_hash": "BF:6F:9E:1C:93:82:A9:CC:D4:FD:35:2D:3F:15:B2:D2:48:A7:DC:6B"
+          }
+        }],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeKyR2FDbAwUwBUN78Ubn7Ky8JcNsUCIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

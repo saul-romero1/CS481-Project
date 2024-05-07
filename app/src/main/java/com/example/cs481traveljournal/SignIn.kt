@@ -60,7 +60,11 @@ class SignIn : AppCompatActivity() {
             }
 
             startActivity(intent)
-            // TODO: Save the user's information in your app's database
+            Toast.makeText(this, "Sign in successful", Toast.LENGTH_SHORT).show()
+            // TODO: Save the user's information in your app's firebase database
+
+
+
         }else{
             Toast.makeText(this, "Sign in failed", Toast.LENGTH_SHORT).show()
         }
