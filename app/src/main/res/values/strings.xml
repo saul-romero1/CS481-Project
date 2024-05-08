@@ -7,7 +7,7 @@
     <string name="mm_dd_yyyy_mm_dd_yyyy"> From: mm/dd/yyyy \nTo: mm/dd/yyyy</string>
     <string name="sign_in">Sign In</string>
     <string name="google_api_key">AIzaSyAk8KXJ5L3ieAGHHlyoJfOnpUlUdAx8ebg</string>
-    <string name="back">back</string>
+    <string name="Back">Back</string>
     <string name="usd_to_currency">USD to Currency</string>
     <string name="country">country</string>
     <string name="language_spoken">Language Spoken</string>
