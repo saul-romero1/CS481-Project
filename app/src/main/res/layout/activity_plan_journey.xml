@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@color/white"
         android:hint="@string/mm_dd_yyyy_mm_dd_yyyy"
@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cMap" />
+        app:layout_constraintTop_toBottomOf="@+id/cMap" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -112,23 +112,22 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/red"
         android:text="@string/Back"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_Currency" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/bCncyConv"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:text="Currency Converter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bBack"
-        app:layout_constraintTop_toBottomOf="@+id/tv_Currency" />
+        app:layout_constraintStart_toEndOf="@+id/bBack" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
