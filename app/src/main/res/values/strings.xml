@@ -8,6 +8,7 @@
     <string name="sign_in">Sign In</string>
     <string name="google_api_key">AIzaSyAk8KXJ5L3ieAGHHlyoJfOnpUlUdAx8ebg</string>
     <string name="Back">Back</string>
+    <string name="back">Back</string>
     <string name="usd_to_currency">USD to Currency</string>
     <string name="country">country</string>
     <string name="language_spoken">Language Spoken</string>
