@@ -1,5 +1,6 @@
 package com.example.cs481traveljournal
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -267,6 +268,10 @@ class CurrencyConverter : AppCompatActivity() {//create variables
                     }
                 }
             })
+        }
+
+        findViewById<Button>(R.id.bBackCC).setOnClickListener {
+            startActivity(Intent(this,plan_journey_activity::class.java))
         }
     }
 }

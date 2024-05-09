@@ -114,7 +114,9 @@ class plan_journey_activity : AppCompatActivity() {
         }
 
 
-
+        findViewById<Button>(R.id.bCncyConv).setOnClickListener {
+            startActivity(Intent(this,CurrencyConverter::class.java))
+        }
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

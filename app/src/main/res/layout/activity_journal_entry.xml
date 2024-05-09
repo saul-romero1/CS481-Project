@@ -87,13 +87,12 @@
 
     <Button
         android:id="@+id/bBack"
-        android:backgroundTint="@color/red"
-        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        android:backgroundTint="@color/red"
+        android:text="@string/Back"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/tv_Date"
