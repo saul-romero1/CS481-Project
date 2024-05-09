@@ -86,6 +86,16 @@
         app:layout_constraintTop_toBottomOf="@id/text" />
 
     <Button
+        android:id="@+id/History"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Entry History"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
         android:id="@+id/bBack"
         android:backgroundTint="@color/red"
         android:textColor="@color/white"
