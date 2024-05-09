@@ -72,7 +72,8 @@ class plan_journey_activity : AppCompatActivity() {
                             if (addrList[0].countryName == "Antarctica") {
                                 findViewById<TextView>(R.id.tv_Language).setText("Penguin")
                                 findViewById<TextView>(R.id.tv_Currency).setText("1 dollar = 1 frozen dollar")
-
+                                var countryName = addrList[0].countryName
+                                findViewById<TextView>(R.id.tv_Country).text = countryName
 
                             } else {
                                var countryName = addrList[0].countryName
