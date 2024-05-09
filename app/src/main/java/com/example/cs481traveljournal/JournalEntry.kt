@@ -1,5 +1,6 @@
 package com.example.cs481traveljournal
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
@@ -15,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.libraries.places.api.model.LocalDate
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageMetadata
 import com.google.firebase.storage.StorageReference
@@ -37,8 +39,11 @@ class JournalEntry : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_journal_entry)
+
+        val uploadButton = findViewById<Button>(R.id.Upload)
+
         findViewById<Button>(R.id.bBack).setOnClickListener {
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
         travelPic = findViewById(R.id.travelPic)
 
@@ -55,10 +60,41 @@ class JournalEntry : AppCompatActivity() {
             choosePicture()
         }
         findViewById<Button>(R.id.History).setOnClickListener {
-            startActivity(Intent(this,EntryHistory::class.java))
+            startActivity(Intent(this, EntryHistory::class.java))
         }
-    }
 
+        uploadButton.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setMessage("Entry was submitted successfully! After Review it will be posted to the Journal.")
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+
+            val entryText = findViewById<EditText>(R.id.text).text.toString()
+            val locationText = findViewById<EditText>(R.id.locationText).text.toString()
+            val dateText = findViewById<TextView>(R.id.tv_Date).text.toString()
+
+            //upload to firebase
+            val db = FirebaseFirestore.getInstance()
+            val entry = hashMapOf(
+                "Entry" to entryText,
+                "Location" to locationText,
+                "Date" to dateText
+            )
+            db.collection("Journal Entries")
+                .add(entry)
+                .addOnSuccessListener { documentReference ->
+                    println("DocumentSnapshot added with ID: ${documentReference.id}")
+                }
+                .addOnFailureListener { e ->
+                    println("Error adding document: $e")
+
+
+                }
+        }
+
+    }
     private fun choosePicture() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"

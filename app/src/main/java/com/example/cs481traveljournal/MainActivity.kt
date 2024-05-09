@@ -64,6 +64,11 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, JournalEntry::class.java))
                     true
                 }
+                R.id.ic_old_journals-> {
+                    startActivity(Intent(this, EntryHistory::class.java))
+                    true
+                }
+
                 else ->
                     true
             }
