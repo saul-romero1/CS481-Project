@@ -54,6 +54,9 @@ class JournalEntry : AppCompatActivity() {
         travelPic.setOnClickListener {
             choosePicture()
         }
+        findViewById<Button>(R.id.History).setOnClickListener {
+            startActivity(Intent(this,EntryHistory::class.java))
+        }
     }
 
     private fun choosePicture() {
