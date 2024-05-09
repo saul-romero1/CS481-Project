@@ -12,6 +12,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -57,6 +58,7 @@ class plan_journey_activity : AppCompatActivity() {
 
 
             override fun onPlaceSelected(place: Place) {
+                val viewModel = ViewModelProvider(this@plan_journey_activity).get(planJourneyViewModel::class.java)
                 val mGeocoder = Geocoder(applicationContext, Locale.getDefault())
                 place.latLng?.let { latLng ->
                         supportFragmentManager.findFragmentById(R.id.cMap)?.let { fragment ->
@@ -68,17 +70,17 @@ class plan_journey_activity : AppCompatActivity() {
                         if (addrList != null && addrList.isNotEmpty()) {
                             val countryCode = addrList[0].countryCode
                             if (addrList[0].countryName == "Antarctica") {
-                                findViewById<TextView>(R.id.tv_Country).text =
-                                    addrList[0].countryName
                                 findViewById<TextView>(R.id.tv_Language).setText("Penguin")
                                 findViewById<TextView>(R.id.tv_Currency).setText("1 dollar = 1 frozen dollar")
 
 
                             } else {
-                                findViewById<TextView>(R.id.tv_Country).text =
-                                    addrList[0].countryName
+                               var countryName = addrList[0].countryName
+                                findViewById<TextView>(R.id.tv_Country).text = countryName
+
                                 getCountryCode(countryCode) { country ->
-                                    findViewById<TextView>(R.id.tv_Language).text = country.language
+                                    var language = country.language
+                                    findViewById<TextView>(R.id.tv_Language).text = language
 
                                     convertCurrency(
                                         "USD",
@@ -91,6 +93,8 @@ class plan_journey_activity : AppCompatActivity() {
                                                 conversion
 
                                         }
+                                        viewModel.updateVM(countryName,language, conversion)
+
                                     }
                                 }
                             }
